@@ -1,6 +1,6 @@
 import { Container } from '@mui/material';
 import React from 'react';
-import CompanyLogo from '../../assets/graduation-cap.svg'
+import CompanyLogo from '../../assets/companylogo.svg'
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 import EmailIcon from "@mui/icons-material/Email";
 
@@ -18,7 +18,7 @@ const LogoBar = () => {
           <div>
             <PhoneInTalkIcon sx={{ color: "#4D5FE3" }} />
           </div>
-          <div className="flex flex-col items-center justify-center pr-10">
+          <div className="flex flex-col items-center justify-center">
             <div className="text-sm font-thin">Call Agent</div>
             <div className="ml-2 text-sm">99399 99399</div>
           </div>
@@ -29,7 +29,7 @@ const LogoBar = () => {
           </div>
           <div className="flex flex-col items-center justify-center">
             <div className="text-sm font-thin">Call Agent</div>
-            <div className="ml-2 text-sm">rakeshmahendran99@gmail.com</div>
+            <div className="ml-2 text-sm">needhelp@eduseeke.com</div>
           </div>
         </div>
       </div>

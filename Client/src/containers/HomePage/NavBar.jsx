@@ -3,6 +3,9 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Container } from "@mui/material";
 
 const NavBar = () => {
+  
+
+  
   return (
     <Container>
       <div className="flex items-center justify-center w-full mt-5 mb-5 font-sans">
