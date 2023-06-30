@@ -5,7 +5,7 @@ import NavBar from "../../containers/HomePage/NavBar";
 import LogoBar from "../../containers/HomePage/LogoBar";
 import InfoCard from "../../containers/HomePage/InfoCard";
 import Footer from "../../containers/Footer/Footer";
-
+import CourseExploreSection from "../../containers/HomePage/CourseExploreSection";
 
 
 const Home = () => {
@@ -17,6 +17,7 @@ const Home = () => {
       <NavBar />
       <hr className="border-gray-300" />
       <InfoCard/>
+      <CourseExploreSection/>
       <Footer/>
     </div>
   );
