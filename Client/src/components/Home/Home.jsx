@@ -18,7 +18,7 @@ const Home = () => {
       <hr className="border-gray-300" />
       <InfoCard/>
       <CourseExploreSection/>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   );
 };

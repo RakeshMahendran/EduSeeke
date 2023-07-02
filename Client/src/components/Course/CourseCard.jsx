@@ -9,7 +9,7 @@ const CourseCard = ({ courseDetails, fetchCoursesSuccess }) => {
     axios
       .get("http://localhost:4030/courses")
       .then((response) => {
-        fetchCoursesSuccess(response.data);
+        fetchCoursesSuccess(response.data.result);
       })
       .catch((error) => {
         console.log("error in courseCard component",error)
@@ -19,12 +19,25 @@ const CourseCard = ({ courseDetails, fetchCoursesSuccess }) => {
   console.log("courseDetails", courseDetails);
 
   return (
-    <div>
-      <div>
-        <div>
-            <img src={courseImage} alt="courseImage" className="w-48 h-72" />
-        </div>
-      </div>
+    <div className="flex">
+    {
+      courseDetails && courseDetails.map((courseDetail)=>{
+        return (
+          <div>
+              <div>
+                <img
+                  src={courseImage}
+                  alt="courseImage"
+                  className="h-48 w-72"
+                />
+              </div>
+              <div className="text-red-500">
+                <p>{courseDetail.courseTutor}</p>
+              </div>
+          </div>
+        );
+      })
+    }
     </div>
   );
 };
