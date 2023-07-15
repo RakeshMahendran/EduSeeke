@@ -1,5 +1,5 @@
 import React from 'react'
-import CourseCard from '../../components/Course/CourseCard';
+import CourseCard from '../../Pages/Course/CourseCard';
 import { Container } from '@mui/material';
 
 const CourseExploreSection = () => {

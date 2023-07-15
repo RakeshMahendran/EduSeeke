@@ -31,8 +31,8 @@ const InfoCard = () => {
     <Container>
       <div className="flex justify-between p-2 ">
         {infoCardDetails &&
-          infoCardDetails.map((item) => (
-            <div>
+          infoCardDetails.map((item,index) => (
+            <div key={index}>
               <div>
                 {item.infoLogo}
               </div>
