@@ -1,8 +1,9 @@
 import React from 'react'
+import SignUpModal from './SignUpModal'
 
 const SignUp = () => {
   return (
-    <div>SignUp</div>
+    <div><SignUpModal/></div>
   )
 }
 

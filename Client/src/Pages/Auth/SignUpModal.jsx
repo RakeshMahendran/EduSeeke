@@ -3,35 +3,43 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { userLogin } from "../../features/auth/authSlice";
+import { signup as signupAction } from "../../features/auth/signupSlice";
 
-export default function Modal({}) {
+export default function SignUpModal({}) {
   const tabActive = "Student";
   const { register, handleSubmit } = useForm();
 
   const [showModal, setShowModal] = useState(false);
   const [currentTab, setCurrentTab] = useState(tabActive);
-  const userInfo = useSelector((state) => state.userInfo);
+  const signupState = useSelector((state) => state.signup);
   const dispatch = useDispatch();
 
   const tabs = ["Student", "Teacher"];
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userInfo) {
+    if (signupState) {
       navigate("/");
     }
-  }, [navigate, userInfo]);
+  }, [navigate, signupState]);
 
-  const handleStudentLogin = (data) => {
+  const handleStudentSignup = (data) => {
     console.log("Submitting student login form", data);
-    dispatch(userLogin(data));
+    dispatch(signupAction(data));
   };
 
-  const handleTeacherLogin = (data) => {
+  const handleTeacherSignup = (data) => {
     console.log("Submitting teacher login form", data);
-    dispatch(userLogin(data));
+    dispatch(signupAction(data));
   };
+
+  console.log(signupState.error, "signupState.error");
+
+  const renderError = () =>{
+        if (signupState.error) {
+          return <div className="text-red-500 font-light">{signupState.error}</div>;
+        }
+  }
   const renderTab = () => {
     return (
       <div className="flex">
@@ -62,8 +70,35 @@ export default function Modal({}) {
         <form
           action=""
           className="flex flex-col gap-5"
-          onSubmit={handleSubmit(handleStudentLogin)}
+          onSubmit={handleSubmit(handleStudentSignup)}
         >
+          <div className="flex flex-col items-start justify-start gap-3">
+            <label htmlFor="" className="text-primary font-semibold">
+              First Name
+            </label>
+            <input
+              type="text"
+              placeholder="Enter your first name"
+              className="outline-primary w-full h-10 rounded-lg placeholder:text-gray-300 placeholder:px-2
+                        shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px]"
+              {...register("firstName")}
+              required
+            />
+          </div>
+          <div className="flex flex-col items-start justify-start gap-3">
+            <label htmlFor="" className="text-primary font-semibold">
+              Last Name
+            </label>
+            <input
+              type="text"
+              placeholder="Enter your last name"
+              className="outline-primary w-full h-10 rounded-lg placeholder:text-gray-300 placeholder:px-2
+                        shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px]"
+              {...register("lastName")}
+              required
+            />
+          </div>
+
           <div className="flex flex-col items-start justify-start gap-3">
             <label htmlFor="" className="text-primary font-semibold">
               E-mail ID
@@ -99,11 +134,12 @@ export default function Modal({}) {
               className="relative flex items-center justify-center px-6 py-1 text-lg w-min overflow-hidden font-semibold text-white  rounded-2xl cursor-default group bg-primary"
             >
               <span className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-300 ease-out transform translate-y-0 bg-black group-hover:h-full opacity-90"></span>
-              <span className="relative group-hover:text-white">Login</span>
+              <span className="relative group-hover:text-white">Signup</span>
             </button>
           </div>
+          {renderError()}
           <div className="flex items-center justify-center gap-2">
-            <span className="font-light">Don't have an account ?</span>
+            <span className="font-light">Already have an account ?</span>
             <span className="font-medium hover:font-semibold hover:text-lg text-primary">
               Create
             </span>
@@ -125,7 +161,7 @@ export default function Modal({}) {
         <form
           action=""
           className="flex flex-col gap-5"
-          onSubmit={handleSubmit(handleTeacherLogin)}
+          onSubmit={handleSubmit(handleTeacherSignup)}
         >
           <div className="flex flex-col items-start justify-start gap-3">
             <label htmlFor="" className="text-primary font-semibold">
@@ -178,15 +214,12 @@ export default function Modal({}) {
             >
               <span className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-300 ease-out transform translate-y-0 bg-black group-hover:h-full opacity-90"></span>
               <span
-                className="relative group-hover:text-white"
-                onClick={() => {
-                  handleTeacherLogin;
-                }}
-              >
-                Login
+                className="relative group-hover:text-white"       >
+                Signup
               </span>
             </button>
           </div>
+          {renderError()}
           <div className="flex items-center justify-center gap-2">
             <span className="font-light">Don't have an account ?</span>
             <span className="font-medium hover:font-semibold hover:text-lg text-primary">
@@ -220,7 +253,7 @@ export default function Modal({}) {
         type="button"
         onClick={() => setShowModal(true)}
       >
-        Login
+        Signup
       </button>
       {showModal ? (
         <>

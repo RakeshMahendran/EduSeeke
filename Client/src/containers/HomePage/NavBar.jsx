@@ -1,6 +1,8 @@
 import React from "react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Container } from "@mui/material";
+import LoginModal from '../../Pages/Auth/LoginModal'
+import SignUpModal from "../../Pages/Auth/SignUpModal";
 
 const NavBar = () => {
   
@@ -20,9 +22,9 @@ const NavBar = () => {
           </div>
           <div className="flex gap-10">
             <div className="font-light cursor-default">
-              <span className="text-sm hover:text-primary">Login</span>{" "}
+              <span className="text-sm hover:text-primary"><LoginModal/></span>{" "}
               <span className="text-sm font-thin">/</span>{" "}
-              <span className="text-sm hover:text-primary">Register</span>
+              <span className="text-sm hover:text-primary"><SignUpModal/></span>
             </div>
             <div>
               <ShoppingCartOutlinedIcon
