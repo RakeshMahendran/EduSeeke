@@ -6,6 +6,32 @@ import SignUpModal from "../../Pages/Auth/SignUpModal";
 
 const NavBar = () => {
   
+  const navContents = [
+    {
+      name: "Home",
+      link: "/",
+    },
+    {
+      name: "About",
+      link: "/about",
+    },
+    {
+      name: "Courses",
+      link: "/courses",
+    },
+    {
+      name: "Teachers",
+      link: "/teachers",
+    },
+    {
+      name: "News",
+      link: "/news",
+    },
+    {
+      name: "Contact",
+      link: "/contact",
+    },
+  ];
 
   
   return (

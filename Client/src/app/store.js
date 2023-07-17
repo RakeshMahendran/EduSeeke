@@ -8,7 +8,6 @@ const store = configureStore({
         auth:loginReducer,
         signup:signupReducer,
         courses:courseReducer
-
      }
 })
 
