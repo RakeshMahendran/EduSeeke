@@ -6,13 +6,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { signup as signupAction } from "../../features/auth/signupSlice";
 
 export default function SignUpModal({}) {
+
+
   const tabActive = "Student";
   const { register, handleSubmit } = useForm();
-
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [currentTab, setCurrentTab] = useState(tabActive);
   const signupState = useSelector((state) => state.signup);
   const dispatch = useDispatch();
+
+    useEffect(() => {
+      if (formSubmitted && signupState.message) {
+        setShowModal(false);
+      }
+    }, [formSubmitted , signupState.message]);
+
 
   const tabs = ["Student", "Teacher"];
   const navigate = useNavigate();
@@ -26,6 +35,8 @@ export default function SignUpModal({}) {
   const handleStudentSignup = (data) => {
     console.log("Submitting student login form", data);
     dispatch(signupAction(data));
+
+    setFormSubmitted(true);
   };
 
   const handleTeacherSignup = (data) => {
@@ -33,13 +44,22 @@ export default function SignUpModal({}) {
     dispatch(signupAction(data));
   };
 
-  console.log(signupState.error, "signupState.error");
+  console.log(signupState.message, "signupState.error");
 
   const renderError = () =>{
         if (signupState.error) {
           return <div className="text-red-500 font-light">{signupState.error}</div>;
         }
+        else if(signupState.message){
+          return <div className="text-green-500">{signupState.message}</div>
+        }
+        
   }
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setFormSubmitted(false);
+  };
   const renderTab = () => {
     return (
       <div className="flex">
