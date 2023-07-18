@@ -38,6 +38,8 @@ const NavBar = () => {
     <Container>
       <div className="flex items-center justify-center w-full mt-5 mb-5 font-sans">
         <div className="flex gap-48">
+
+          
           <div className="flex gap-9">
             <div className="cursor-default hover:text-primary hover:font-semibold">Home</div>
             <div className="cursor-default hover:text-primary hover:font-semibold">About</div>
