@@ -3,17 +3,19 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signup as signupAction } from "../../features/auth/signupSlice";
+import { signup as signupAction,resetSignup } from "../../features/auth/signupSlice";
 
 export default function SignUpModal({}) {
 
 
   const tabActive = "Student";
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit,reset } = useForm();
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [currentTab, setCurrentTab] = useState(tabActive);
   const signupState = useSelector((state) => state.signup);
+
+  console.log("signup state",signupState)
   const dispatch = useDispatch();
 
     useEffect(() => {
@@ -21,6 +23,13 @@ export default function SignUpModal({}) {
         setShowModal(false);
       }
     }, [formSubmitted , signupState.message]);
+
+      useEffect(() => {
+        if (!showModal) {
+          setFormSubmitted(false);
+          reset();
+        }
+      }, [showModal, reset]);
 
 
   const tabs = ["Student", "Teacher"];
@@ -50,15 +59,16 @@ export default function SignUpModal({}) {
         if (signupState.error) {
           return <div className="text-red-500 font-light">{signupState.error}</div>;
         }
-        else if(signupState.message){
-          return <div className="text-green-500">{signupState.message}</div>
-        }
+        // else if(signupState.message){
+        //   return <div className="text-green-500">{signupState.message}</div>
+        // }
         
   }
 
   const handleCloseModal = () => {
     setShowModal(false);
     setFormSubmitted(false);
+    dispatch(resetSignup());
   };
   const renderTab = () => {
     return (
@@ -165,7 +175,7 @@ export default function SignUpModal({}) {
             </span>
           </div>
           <button
-            onClick={() => setShowModal(false)}
+            onClick={() => handleCloseModal()}
             className="bg-primary text-white px-2 rounded-lg uppercase"
           >
             Close
